@@ -8,9 +8,6 @@ public class MercaleafApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MercaleafApplication.class, args);
-
-		System.out.println("Un cambio (santiago varela)");
-
 	}
 
 }
