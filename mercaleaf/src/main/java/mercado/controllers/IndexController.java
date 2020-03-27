@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import mercado.models.Usuario;
+import mercado.models.entity.Usuario;
 
 @Controller
 @RequestMapping(value = "/app")

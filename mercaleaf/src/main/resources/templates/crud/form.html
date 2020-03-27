@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text=${titulo}></title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Mercaleaf</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/crud/listar}">Usuarios</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+				<li class="nav-item"><a class="nav-link disabled" href="#"
+					tabindex="-1" aria-disabled="true">Disabled</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h1 th:text="${titulo}"
+			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
+
+		<form th:action="@{/crud/form}" th:object="${usuario}" method="post">
+			<div>
+				<label class="col-sm-2 col-form-label">Nombre</label> <input
+					type="text" th:field="*{nombre}" class="form-control" />
+			</div>
+
+			<tr>
+				<td>Apellido</td>
+				<td><input type="text" th:field="*{apellido}"
+					class="form-control" /></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="email" th:field="*{email}"
+					class="form-control" /></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="form-group">
+						<label for="sel1">Rol:</label>
+						 
+						<select class="form-control" id="sel1">
+							<div th:each="rol: ${roles}">
+								<option th:text="${rol.nombre}" th:value="${rol.id}" th:field="*{rol}"></option>
+							</div>		
+							
+						</select>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Crear usuario"
+					class="btn btn-primary" /></td>
+			</tr>
+
+			</table>
+			<input type="hidden" th:field="*{idUsuario}" />
+		</form>
+	</div>
+</body>
+</html>
