@@ -29,6 +29,8 @@ public class Productor extends Usuario {
 		this.productos = productos;
 	}
 
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }
