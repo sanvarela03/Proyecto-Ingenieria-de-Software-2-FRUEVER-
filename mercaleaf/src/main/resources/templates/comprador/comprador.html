@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html  xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head >
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
 
@@ -28,9 +28,10 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-size: 18px;
+    body{
+      font-size: 12px;
     }
+
 
     form.example input[type=text] {
       padding: 10px;
@@ -70,15 +71,14 @@
 
 <body>
   <div class=".container-fluid">
+
     <!--SECCION DE NAVEGACION-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
       <a class="navbar-brand mr-5" href="#"><span style="font-size:30px;">Mercaleaf</span> <i style='font-size:24px;color:green;' class='fas'>&#xf06c;</i> <br /> <span class="ml-2" style="font-size:10px;">compradores</span></a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <!--Mitad Izquierda-->
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item mr-5">
             <form class="form-inline my-2 my-lg-0">
@@ -103,6 +103,7 @@
           </li>
         </ul>
 
+        <!--Mitad Derecha-->
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
 
@@ -115,14 +116,19 @@
             <a class="nav-link" href="#"><i class="material-icons" style="font-size:35px;">&#xe854;</i></a>
           </li>
 
+          <!--Nombre Usuario-->
           <li class="nav-item">
-            <a class="nav-link" href="#"></a>
+            <a class="nav-link" href="#"><span th:text="${correo}"></span></a>
           </li>
 
+          <!--Seccion Usuario-->
           <li class="nav-item">
+
             <div class="btn-group  ml-4">
               <button type="button" class="btn btn-secondary" style="background:transparent; border: 1px solid Black">
-                <img src="C:\Users\Santiago Varela\Desktop\Ingenieria de Software\Katherine\usuario-img.jpg" alt="Flowers in Chania" height="35" width="35">
+              
+                <img th:src="@{'/crud/uploads/' + ${usuario.foto}}" alt="Foto Usuario" height="35" width="35"/>
+                
               </button>
               <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" style="background:transparent; border: 1px solid Black">
               </button>
@@ -131,11 +137,16 @@
                 <a class="dropdown-item" href="#">Link 2</a>
               </div>
             </div>
+
           </li>
         </ul>
       </div>
     </nav>
     <!--/SECCION DE NAVEGACION-->
+
+
+
+
     <div class="container mt-3">
       <h2>TIENDA</h2>
       <br />
@@ -169,34 +180,29 @@
       <!--SECCION DE PRODUCTOS-->
       <h2>PRODUCTOS</h2>
 
-      <!--Un producto-->
-      <ul class="list-group" href="">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <form action="">
-              <button type="submit" value="Manzana" style="border:0px; background:transparent;"><b>Manzana</b> &nbsp; <br /> <br /></button>
-            </form>
-            <button class="btn btn-outline-primary" type="button">agregar al carrito</button>
-            <div class="float-right">
-              <img src="C:\Users\Santiago Varela\Desktop\Ingenieria de Software\Katherine\descarga.png" alt="Flowers in Chania" style="hig" height="82" width="82">
-            </div>
-            <br/>
-          </li>
-        </ul>
-      </ul>
-      <!--/Un producto-->
+      <div th:each="producto: ${productos}">
 
-      <ul class="list-group">
-        <ul class="list-group">
-          <li class="list-group-item"><b>Manzana</b> &nbsp; <br /> <br />
-            <button class="btn btn-outline-primary" type="button">agregar al carrito</button>
-            <div class="float-right">
-              <img src="C:\Users\Santiago Varela\Desktop\Ingenieria de Software\Katherine\descarga.png" alt="Flowers in Chania" style="hig" height="82" width="82">
-            </div>
-            <br />
-          </li>
+        <!--Un producto-->
+        <ul class="list-group" href="">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <form action="">
+                <button type="submit" value="Manzana" style="border:0px; background:transparent;"><b style="font-size:20px;"><td th:text="${producto.nombre}" /></b> &nbsp; <br /> <br /></button>
+              </form>
+              <button class="btn btn-outline-primary" type="button">agregar al carrito</button>
+              <div class="float-right">
+
+                <img src="" alt="Flowers in Chania" height="82" width="82">
+
+              </div>
+              <br/>
+            </li>
+          </ul>
         </ul>
-      </ul>
+        <br/>
+        <!--/Un producto-->
+
+      </div>
 
       <!--/SECCION DE PRODUCTOS-->
 

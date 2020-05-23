@@ -1,7 +1,11 @@
-package mercado;
+package mercado.commons;
+
+import org.springframework.stereotype.Component;
+
 
 import java.io.InputStream;
 
+@Component
 public class CargarImagen {
     private InputStream inputStream;
 
@@ -9,8 +13,7 @@ public class CargarImagen {
         inputStream = this.getClass().getClassLoader().getResourceAsStream("usuario-img.jpg");
     }
 
-    public String getUrl(){
-        String url = " -> "+inputStream;
-        return url;
+    public InputStream getInputStream() {
+        return inputStream;
     }
 }
