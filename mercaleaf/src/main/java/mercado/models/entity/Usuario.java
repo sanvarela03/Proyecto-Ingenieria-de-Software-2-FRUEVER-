@@ -1,27 +1,16 @@
 package mercado.models.entity;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.imageio.ImageIO;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
@@ -29,10 +18,12 @@ import javax.persistence.TemporalType;
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idUsuario;
+
 	private String nombre;
 	private String apellido;
 	private String email;
@@ -50,9 +41,15 @@ public class Usuario implements Serializable {
 	private Rol rol;
 
 	private String direccion;
-	
+
 	@OneToMany(mappedBy = "usuario")
 	private List<PedidoUsuario> pedidoUsuario;
+
+	private String nombreUsuario;
+
+	private String password;
+
+	private String foto;
 
 	public Usuario() {
 		pedidoUsuario = new ArrayList<PedidoUsuario>();
@@ -136,6 +133,42 @@ public class Usuario implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<PedidoUsuario> getPedidoUsuario() {
+		return pedidoUsuario;
+	}
+
+	public void setPedidoUsuario(List<PedidoUsuario> pedidoUsuario) {
+		this.pedidoUsuario = pedidoUsuario;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 }

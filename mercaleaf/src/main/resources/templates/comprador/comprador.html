@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+
+<head >
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body{
+      font-size: 12px;
+    }
+
+
+    form.example input[type=text] {
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid LightGray;
+      float: left;
+      width: 80%;
+      background: white;
+      border-radius: 5px;
+    }
+
+    form.example button {
+      float: left;
+      width: 10%;
+      padding: 10px;
+      background: grey;
+      color: white;
+      font-size: 17px;
+      border: 1px solid grey;
+      border-left: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    form.example button:hover {
+      background: rgb(36, 121, 126);
+    }
+
+    form.example::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class=".container-fluid">
+
+    <!--SECCION DE NAVEGACION-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+      <a class="navbar-brand mr-5" href="#"><span style="font-size:30px;">Mercaleaf</span> <i style='font-size:24px;color:green;' class='fas'>&#xf06c;</i> <br /> <span class="ml-2" style="font-size:10px;">compradores</span></a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <!--Mitad Izquierda-->
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item mr-5">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Buscar en la página">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </li>
+
+          <li class="nav-item active ">
+            <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Calendario</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Mi lista</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+
+        <!--Mitad Derecha-->
+        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+
+
+          <!--Campana de Notificaciones-->
+          <li class="nav-item">
+            <a class="nav-link" href="#"><span class="mr-3"><i style='font-size:30px;' class='far'>&#xf0f3;</i></span></a>
+          </li>
+          <!--Carrito de Compras-->
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="material-icons" style="font-size:35px;">&#xe854;</i></a>
+          </li>
+
+          <!--Nombre Usuario-->
+          <li class="nav-item">
+            <a class="nav-link" href="#"><span th:text="${correo}"></span></a>
+          </li>
+
+          <!--Seccion Usuario-->
+          <li class="nav-item">
+
+            <div class="btn-group  ml-4">
+              <button type="button" class="btn btn-secondary" style="background:transparent; border: 1px solid Black">
+              
+                <img th:src="@{'/crud/uploads/' + ${usuario.foto}}" alt="Foto Usuario" height="35" width="35"/>
+                
+              </button>
+              <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" style="background:transparent; border: 1px solid Black">
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--/SECCION DE NAVEGACION-->
+
+
+
+
+    <div class="container mt-3">
+      <h2>TIENDA</h2>
+      <br />
+      <!-- SECCION DE BUSQUEDA-->
+      <!-- Buscar -->
+      <div class="row">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-8">
+          <form>
+            <div class="row">
+              <div class="col-8">
+                <input class="form-control form-control-md" type="search" placeholder="Buscar Producto o Productor" aria-label="Search">
+              </div>
+              <div class="col">
+                <!--Boton Buscar-->
+                <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
+                <!--Boton Filtrar-->
+                <button class="btn btn-outline-success" type="submit"><i class="material-icons" style="font-size:18px;">&#xe429;</i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-1">
+        </div>
+      </div>
+      <!-- /Buscar -->
+      <br />
+      <!-- /SECCION DE BUSQUEDA-->
+
+      <!--SECCION DE PRODUCTOS-->
+      <h2>PRODUCTOS</h2>
+
+      <div th:each="producto: ${productos}">
+
+        <!--Un producto-->
+        <ul class="list-group" href="">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <form action="">
+                <button type="submit" value="Manzana" style="border:0px; background:transparent;"><b style="font-size:20px;"><td th:text="${producto.nombre}" /></b> &nbsp; <br /> <br /></button>
+              </form>
+              <button class="btn btn-outline-primary" type="button">agregar al carrito</button>
+              <div class="float-right">
+
+                <img src="" alt="Flowers in Chania" height="82" width="82">
+
+              </div>
+              <br/>
+            </li>
+          </ul>
+        </ul>
+        <br/>
+        <!--/Un producto-->
+
+      </div>
+
+      <!--/SECCION DE PRODUCTOS-->
+
+    </div>
+</body>
+</html>

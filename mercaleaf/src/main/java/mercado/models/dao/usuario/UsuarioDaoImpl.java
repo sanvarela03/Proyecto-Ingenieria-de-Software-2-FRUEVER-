@@ -1,4 +1,4 @@
-package mercado.models.dao.comprador;
+package mercado.models.dao.usuario;
 
 import java.util.List;
 
@@ -11,21 +11,21 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import mercado.commons.GenericDAOImpl;
-import mercado.models.entity.Comprador;
 import mercado.models.entity.Productor;
+import mercado.models.entity.Transportador;
 import mercado.models.entity.Usuario;
 
-@Repository("CompradorDaoImpl-1")
-public class CompradorDaoImpl extends GenericDAOImpl<Comprador, Long> implements ICompradorDAO {
+@Repository("UsuarioDaoImpl-1")
+public class UsuarioDaoImpl extends GenericDAOImpl<Usuario, Long> implements IUsuarioDAO {
 
 	@Autowired
-	private ICompradorCRUD crud;
-	
+	private IUsuarioCRUD crud;
 
 	@Override
-	public CrudRepository<Comprador, Long> getDAO() {
+	public CrudRepository<Usuario, Long> getDAO() {
 
 		return crud;
+
 	}
 
 }

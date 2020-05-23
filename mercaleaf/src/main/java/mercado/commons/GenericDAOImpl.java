@@ -31,11 +31,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements IGen
 
 		Optional<T> objeto = getDAO().findById(id);
 
-		if (objeto.isPresent()) {
-			return objeto.get();
-		}
-
-		return null;
+		return objeto.get();
 	}
 
 	@Override
