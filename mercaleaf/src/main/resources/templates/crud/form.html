@@ -99,9 +99,19 @@
     </form>
     -->
     <h1 class="text-secondary border border-success border-top-0 border-left-0 border-right-0" th:text="${titulo}"></h1>
-
+	
+	
+	
     
     <form method="post" th:action="@{/crud/form}" th:object="${usuario}" enctype="multipart/form-data">
+          <div>
+            <label for="id">ID</label>
+            <div>
+                <input id="id" th:field="*{idUsuario}" type="text">
+            </div>
+        </div>
+        
+        
         <div>
             <label for="nombre">Nombre</label>
             <div>

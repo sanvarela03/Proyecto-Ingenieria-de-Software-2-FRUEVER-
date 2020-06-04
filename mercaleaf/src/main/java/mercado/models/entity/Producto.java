@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "producto")
 public class Producto {
@@ -22,6 +24,7 @@ public class Producto {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private Productor productor;
 
 	@OneToMany(mappedBy = "producto")

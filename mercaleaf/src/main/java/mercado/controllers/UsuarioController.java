@@ -72,6 +72,9 @@ public class UsuarioController {
 		
 		return ResponseEntity.ok().header(org.springframework.http.HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename()+"\"").body(recurso);
 	}
+	
+	
+	
 
 	@GetMapping("/listar")
 	public String listar(Model model) {

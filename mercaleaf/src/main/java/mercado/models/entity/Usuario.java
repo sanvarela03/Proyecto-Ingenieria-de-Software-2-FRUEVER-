@@ -12,6 +12,9 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "usuarios")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -21,9 +24,8 @@ public class Usuario implements Serializable {
 
 	@Id
 	@Column(name = "id_usuario")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idUsuario;
-
 	private String nombre;
 	private String apellido;
 	private String email;
@@ -36,13 +38,16 @@ public class Usuario implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
+//	@JsonManagedReference
+//	@JsonIgnore
 	private Rol rol;
 
 	private String direccion;
 
 	@OneToMany(mappedBy = "usuario")
+	@JsonIgnore
 	private List<PedidoUsuario> pedidoUsuario;
 
 	private String nombreUsuario;
@@ -50,6 +55,12 @@ public class Usuario implements Serializable {
 	private String password;
 
 	private String foto;
+
+	// FOTO
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+//	@JsonBackReference
+	@JsonIgnore
+	private List<ImageModel> fotos;
 
 	public Usuario() {
 		pedidoUsuario = new ArrayList<PedidoUsuario>();
@@ -65,6 +76,7 @@ public class Usuario implements Serializable {
 	@PrePersist
 	public void prePersist() {
 		createAt = new Date();
+		
 	}
 
 	public Long getIdUsuario() {
@@ -169,6 +181,23 @@ public class Usuario implements Serializable {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
+				+ ", fechaNacimiento=" + fechaNacimiento + ", createAt=" + createAt + ", rol=" + rol + ", direccion="
+				+ direccion + ", pedidoUsuario=" + pedidoUsuario + ", nombreUsuario=" + nombreUsuario + ", password="
+				+ password + ", foto=" + foto + "]";
+	}
+
+	// GET SET FOTO
+	public List<ImageModel> getFotos() {
+		return fotos;
+	}
+
+	public void setFotos(List<ImageModel> fotos) {
+		this.fotos = fotos;
 	}
 
 }

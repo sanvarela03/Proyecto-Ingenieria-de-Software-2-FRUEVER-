@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "productor")
 public class Productor extends Usuario {
@@ -15,6 +17,7 @@ public class Productor extends Usuario {
 	private static final long serialVersionUID = 1L;
 	
 	@OneToMany(mappedBy =  "productor" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<Producto> productos;
 
 	public Productor() {
